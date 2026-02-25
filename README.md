@@ -52,7 +52,7 @@ The RCE relies on a command injection using the C `system()` function which is e
 | -- | -- |
 | [inject-crash-command-poc.sh](./inject-crash-command-poc.sh) | This will cause a buffer overflow and segfault |
 | [inject-ping-command-poc.sh](./inject-ping-command-poc.sh) | This will ping back to the caller |
-| [inject-reverse-shell-command-poc.sh](./inject-reverse-shell-command-poc.sh) | This will start a reverse shell which you can use to access the internal Linux and run commands and start to takeover the device |
+| [inject-reverse-shell-command.sh](./inject-reverse-shell-command-poc.sh) | This will start a reverse shell which you can use to access the internal Linux and run commands and start to takeover the device |
 | [inject-ping-command-poc-cmd12-instead.sh](./inject-ping-command-poc-cmd12-instead.sh) | This uses a second path to obtain RCE |
 
 Notes:
