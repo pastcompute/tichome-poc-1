@@ -79,6 +79,11 @@ https://blog.oldcomputerjunk.net/2022/cheap-smart-speaker-teardown-part2
 https://blog.oldcomputerjunk.net/2022/cheap-smart-speaker-teardown-part3
 https://blog.oldcomputerjunk.net/2023/cheap-smart-speaker-teardown-part4
 
+Related techniques also employed:
+
+https://blog.oldcomputerjunk.net/2022/aboot/
+https://blog.oldcomputerjunk.net/2022/valgrind-cross/
+
 ## Vulnerability Impact Hypothesis
 
 It is a little bit of a stretch, but an attacker looking to hide from EDR measures on laptops or phones could exploit this vulnerability to pivot and maintain persistence. Or simply someone looking to spy on clients at a motel where these might be in use, or any of a number of other scenarios a covert microphone or compromised wifi device would be useful.
