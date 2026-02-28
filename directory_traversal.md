@@ -15,7 +15,7 @@ IMPORTANT: this is _not_ the well known vulnerability (or "intended behaviour" d
 
 ## Detailed Description 
 
-There are multiple processes that run, including a process called `autotools_daemon` that exposes a HTTP API on port 8080. Most of the calls appear to be insignificant debugging information such as the device serial number, or provide the ability to modify the volume of the device, however there is a directory traversal that provides read access to all files on the /data partition.
+There are multiple processes that run, including a process called `autotools_daemon` that exposes a HTTP API on port 8080. Most of the calls appear to be insignificant debugging information such as the device serial number, or provide the ability to modify the volume of the device for example.
 
 The `autotools_daemon` process uses a version of the mongoose open source HTTP library, and when the code that processes the API requests handles unknown  requests if the request is formed with two backslashes it will either return a directory listing relative to the process working directory (`/data`) or retrieve the file at that location on `/data`
 

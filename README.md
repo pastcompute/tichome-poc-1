@@ -15,8 +15,7 @@ The embedded computer in this is a 4-core ARM processor on par with a Raspberry 
 * Target Category: IoT hardware
 
 ## Disclosure
-* CVE (RCE): Requested, pending
-* CVE ([directory traversal](./directory_traversal.md)): Requested, pending
+* CVE (RCE): A CVE number has been allocated as of 28 Feb 2026 and will shortly be updated.
 * Responsible Disclosure: As at 14 August 2025 in email correspondence the vendor has confirmed device is end of life, and "there is no any further action that can be taken."
 
 # Vulnerability Details
@@ -30,7 +29,7 @@ The device is a smart speaker that works with Google cast over wifi. Internally 
 
 The device first needs to be setup on wifi. Then, from another system on the same network, send a specially crafted UDP packet which triggers a command injection, remote code execution (RCE), after which the world is your oyster.
 
-The RCE relies on a command injection using the C `system()` function which is executed by a process that accepts packets on an exposed UDP port. This appears to be a remnant debugging interface. This seems to be an IPC mechanism using UDP with ports exposed on all IP addresses instead of just 127.0.0.1. The ipc daemon listens on UDP port 35670. It processes a number of message types identified by the first 32-bit word. It is possible to send a crafted UDP packet to port 35670 that can cause a shell injection execution as root, proven by writing to /data and fetching the result using the directory traversal information disclosure. The same mechanism can be used to segfault the ipc process instead, which might even temporarily disable the device.
+The RCE relies on a command injection using the C `system()` function which is executed by a process that accepts packets on an exposed UDP port. This appears to be a remnant debugging interface. This seems to be an IPC mechanism using UDP with ports exposed on all IP addresses instead of just 127.0.0.1. The ipc daemon listens on UDP port 35670. It processes a number of message types identified by the first 32-bit word. It is possible to send a crafted UDP packet to port 35670 that can cause a shell injection execution as root, proven by both executing a remote network shell, ping and other methods as demonstrated. The same mechanism can be used to segfault the ipc process instead, which might even temporarily disable the device.
 
 ## Proof of concept:
 - construct a binary packet with the following contents

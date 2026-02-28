@@ -29,7 +29,5 @@ The following was able to be enumerated after reversing the onboard software. It
 | `api/upgrade-percent`| GET |  <pre>{<br/>        "command":      "upgrade-percent",<br/>        "type": 0,<br/>        "value":        0<br/>}</pre> | |
 | `api/phy-key`| POST | ? | could not get a data that worked<br/>diassembly: try `{"command":"phy-key", "value":"xxx"}`<br/>Sends `HTTP_AUTO_TEST_PHY_KEY`,`xxx` to IPC<br/>Ultimately a No-Op in appmainprog |
 
-There is also a [directory traversal](./directory_traversal.md), from which the wpa_supplicant file can be retrieved.
-
 
 
