@@ -19,7 +19,7 @@ The embedded computer in this is a 4-core ARM processor on par with a Raspberry 
 * Target Category: IoT hardware
 
 ## Disclosures
-* CVE (RCE): CVE-2026-26478
+* CVE (RCE): CVE-2026-26478 (allocated 28-02-2026)
 * Responsible Disclosure: As at 14 August 2025 in email correspondence the vendor has confirmed device is end of life, and "there is no any further action that can be taken.". This article was made public in February 2026, well after 90 days after, corresponding to my presentation at the Malware and Reverse Engineering Conference in Ballarat, Australia on 26 February 2026.
 
 ## Acknowledgements
