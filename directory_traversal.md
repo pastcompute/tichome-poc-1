@@ -1,3 +1,9 @@
+# Note
+
+Discussion of disclosure is in the mean README.md file.
+
+This page will be updated once a CVE number has been allocated for this vulnerability.
+
 # High Level Overview and possible effect
 
 - An unauthenticated attacker on the local network can download arbitrary files from the configuration (/data) partition on the device, including Wifi credentials and TLS certificate key files
@@ -15,7 +21,7 @@ IMPORTANT: this is _not_ the well known vulnerability (or "intended behaviour" d
 
 ## Detailed Description 
 
-There are multiple processes that run, including a process called `autotools_daemon` that exposes a HTTP API on port 8080. Most of the calls appear to be insignificant debugging information such as the device serial number, or provide the ability to modify the volume of the device for example.
+There are multiple processes that run, including a process called `autotools_daemon` that exposes a HTTP API on port 8080. Most of the calls appear to be insignificant debugging information such as the device serial number, or provide the ability to modify the volume of the device for example, however there is a directory traversal that provides read access to all files on the `/data` partition.
 
 The `autotools_daemon` process uses a version of the mongoose open source HTTP library, and when the code that processes the API requests handles unknown  requests if the request is formed with two backslashes it will either return a directory listing relative to the process working directory (`/data`) or retrieve the file at that location on `/data`
 
