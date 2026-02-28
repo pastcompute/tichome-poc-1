@@ -18,9 +18,13 @@ The embedded computer in this is a 4-core ARM processor on par with a Raspberry 
 * Target Version: 2 known firmware versions identified, 012, and 027, both impacted
 * Target Category: IoT hardware
 
-## Disclosure
+## Disclosures
 * CVE (RCE): CVE-2026-26478
-* Responsible Disclosure: As at 14 August 2025 in email correspondence the vendor has confirmed device is end of life, and "there is no any further action that can be taken.". This article was made public in February 2026, well after 90 days after disclosure, and followed up with my presentation at the Malware and Reverse Engineering Conference in Ballarat, Australia on 26 February 2026. I'd also like to thank the organisers of the Junkyard End of Life Pwnathon competition who helped me out with contacting the vendor and provided advice on the CVE process.
+* Responsible Disclosure: As at 14 August 2025 in email correspondence the vendor has confirmed device is end of life, and "there is no any further action that can be taken.". This article was made public in February 2026, well after 90 days after, corresponding to my presentation at the Malware and Reverse Engineering Conference in Ballarat, Australia on 26 February 2026.
+
+## Acknowledgements
+
+* I'd like to thank the organisers of the **Junkyard End of Life Pwnathon** competition who helped me out with contacting the vendor and provided advice on the CVE process.
 
 # Vulnerability Details
 
