@@ -1,6 +1,13 @@
 # Note
 
-Discussion of disclosure is in the mean README.md file.
+## Target Details
+* Target Name/Model: Mobvoi Tichome Mini
+* Target Version: 2 known firmware versions identified, 012, and 027, both impacted
+* Target Category: IoT hardware
+
+## Disclosures
+* CVE (RCE): CVE requested, pending
+* Responsible Disclosure: As at 14 August 2025 in email correspondence the vendor has confirmed device is end of life, and "there is no any further action that can be taken.". This article was made public in February 2026, well after 90 days after, corresponding to my presentation at the Malware and Reverse Engineering Conference in Ballarat, Australia on 26 February 2026.
 
 This page will be updated once a CVE number has been allocated for this vulnerability.
 
