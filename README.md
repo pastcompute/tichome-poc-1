@@ -1,17 +1,19 @@
 # CVE Numbers
 
 `CVE-2026-26478`
+`CVE-2026-36599`
 
 # Introduction
 
-This is a proof of concept (POC) for using a UDP packet to perform a command injection into a Tichome Mini smart speaker.
-This device has not been on sale since at least 2024 and has been confirmed end of life (EOL) in an email exchange with the vendor when approached to disclose the vulnerability. A CVE has been requested.
+This repository includes a proof of concept (POC) for using a UDP packet to perform a command injection into a Tichome Mini smart speaker, and for performing a directory traversal to access information such as wifi credentials.
 
-This release accompanies my talk at the 2026 Malware & Reverse Engineering Conference held in Ballarat.
+This device has not been on sale since at least 2024 and has been confirmed end of life (EOL) in an email exchange with the vendor when approached to disclose the vulnerability.
+
+This release accompanied my talk at the 2026 Malware & Reverse Engineering Conference held in Ballarat.
 
 ## Why did I bother?
 
-The embedded computer in this is a 4-core ARM processor on par with a Raspberry Pi Zero (2-enabled by default) running headless Android and there is a multitude of peripherals, including bluetooth, speaker, microphone, LEDs, embedded battery, NFC, and USB, although I haven't quite worked out how to play with all of them yet. As such it is a fun device to experiment with, and useful for building a battery powered wifi relay or USB micro-NAS as it can act concurrently as an AP and a client.
+The embedded computer in the device is a 4-core ARM processor on par with a Raspberry Pi Zero (2-enabled by default) running headless Android and there is a multitude of peripherals, including bluetooth, speaker, microphone, LEDs, embedded battery, NFC, and USB, although I haven't quite worked out how to play with all of them yet. As such it is a fun device to experiment with, and useful for building a battery powered wifi relay or USB micro-NAS as it can act concurrently as an AP and a client.
 
 ## Target Details
 * Target Name/Model: Mobvoi Tichome Mini
@@ -19,7 +21,8 @@ The embedded computer in this is a 4-core ARM processor on par with a Raspberry 
 * Target Category: IoT hardware
 
 ## Disclosures
-* CVE (RCE): CVE-2026-26478 (allocated 28-02-2026)
+* CVE (RCE): CVE-2026-26478
+* CVE (RCE): CVE-2026-36599
 * Responsible Disclosure: As at 14 August 2025 in email correspondence the vendor has confirmed device is end of life, and "there is no any further action that can be taken.". This article was made public in February 2026, well after 90 days after, corresponding to my presentation at the Malware and Reverse Engineering Conference in Ballarat, Australia on 26 February 2026.
 
 ## Acknowledgements
@@ -32,6 +35,8 @@ The embedded computer in this is a 4-core ARM processor on par with a Raspberry 
 The device is a smart speaker that works with Google cast over wifi. Internally the hardware is very close to a Raspberry Pi, plus speaker, microphone, LEDs, wifi, bluetooth, NFC, 1x micro USB which can operate in OTG mode, and inbuilt battery. A local electronics store had these on sale for ~$30 in 2022 as an end of line product, so I bought some with the aim of repurposing them. They make an excellent wifi repeater (or pineapple), speaker, etc. Even without the security vulnerabilities, they can be easily dismantled and the serial port used to disable the headless Android casting functions and upload your own ARM binaries or scripts to do cool things with.
 
 ![](pics/image.png)
+
+# Command Injection to Remote Code Execution as Root - CVE-2026-26478
 
 ## Steps to Reproduce
 
@@ -82,6 +87,7 @@ https://blog.oldcomputerjunk.net/2023/cheap-smart-speaker-teardown-part4
 Related techniques also employed:
 
 https://blog.oldcomputerjunk.net/2022/aboot/
+
 https://blog.oldcomputerjunk.net/2022/valgrind-cross/
 
 ## Vulnerability Impact Hypothesis
@@ -123,3 +129,8 @@ sshd -F -E -B
 ### Denial of Service
 
 Alternately, run the script `inject-crash-command-poc.sh` using arguments `<speaker IP>` to crash the daemon on the device which will lock it up until power cycled.
+
+# Web directory traversal to on-device filesystem - CVE-2026-36599
+
+See [doc/directory_traversal.md](./doc/directory_traversal.md)
+

@@ -1,4 +1,4 @@
-# Note
+# Web directory traversal to on-device filesystem - CVE-2026-36599
 
 ## Target Details
 * Target Name/Model: Mobvoi Tichome Mini
@@ -6,10 +6,8 @@
 * Target Category: IoT hardware
 
 ## Disclosures
-* CVE (RCE): CVE requested, pending
+* CVE (RCE): CVE-2026-36599
 * Responsible Disclosure: As at 14 August 2025 in email correspondence the vendor has confirmed device is end of life, and "there is no any further action that can be taken.". This article was made public in February 2026, well after 90 days after, corresponding to my presentation at the Malware and Reverse Engineering Conference in Ballarat, Australia on 26 February 2026.
-
-This page will be updated once a CVE number has been allocated for this vulnerability.
 
 # High Level Overview and possible effect
 
@@ -22,7 +20,7 @@ IMPORTANT: this is _not_ the well known vulnerability (or "intended behaviour" d
 - An unauthenticated user with access to the local network can read device private TLS keys and I speculate they could use this information to pretend to be the device and execute unintended operations on behalf of connected users 
 - Other files include what appear to be audio recordings of unknown heritage, so I speculate that an unauthenticated user with access to the local network might be able to read user personal information from voice recordings, although further research is needed.
 - This vulnerability could be coupled with other vulnerabilities to expedite further attacks
-- The other exposed API effects appear to be inconsequential minor DoS (e.g set volume to 0, change power off duration beaviour) included for completeness
+- The other exposed API effects appear to be inconsequential minor DoS (e.g set volume to 0, change power off duration behaviour) included for completeness
 
 # Root Cause Analysis
 
@@ -83,8 +81,7 @@ For comparison: unknown function is handled reasonably and will return an error 
 curl --path-as-is http://$SPEAKER_IP:8080/junk
 ```
 
-
-## Suggested fixes 
+# Suggested fixes
 
 Do not call `mg_serve_http()` when the API parser returns an error code (-1), there is no need to serve files from the device. CWE-1164 Irrelevant code
 
